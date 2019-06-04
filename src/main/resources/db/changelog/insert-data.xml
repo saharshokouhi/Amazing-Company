@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <changeSet id="02" author="sahar">
+        <comment>Inserting initial graph</comment>
+        <insert tableName="node">
+            <column name="id" valueNumeric="1"/>
+            <column name="left_pos" value="1"/>
+            <column name="right_pos" value="18"/>
+            <column name="height" value="0"/>
+        </insert>
+        <insert tableName="node">
+            <column name="id" valueNumeric="2"/>
+            <column name="left_pos" value="2"/>
+            <column name="right_pos" value="15"/>
+            <column name="height" value="1"/>
+            <column name="parent_id" value="1"/>
+        </insert>
+        <insert tableName="node">
+            <column name="id" valueNumeric="3"/>
+            <column name="left_pos" value="3"/>
+            <column name="right_pos" value="4"/>
+            <column name="height" value="2"/>
+            <column name="parent_id" value="2"/>
+        </insert>
+        <insert tableName="node">
+            <column name="id" valueNumeric="4"/>
+            <column name="left_pos" value="16"/>
+            <column name="right_pos" value="17"/>
+            <column name="height" value="1"/>
+            <column name="parent_id" value="1"/>
+        </insert>
+        <insert tableName="node">
+            <column name="id" valueNumeric="5"/>
+            <column name="left_pos" value="5"/>
+            <column name="right_pos" value="14"/>
+            <column name="height" value="2"/>
+            <column name="parent_id" value="2"/>
+        </insert>
+        <insert tableName="node">
+            <column name="id" valueNumeric="6"/>
+            <column name="left_pos" value="6"/>
+            <column name="right_pos" value="11"/>
+            <column name="height" value="3"/>
+            <column name="parent_id" value="5"/>
+        </insert>
+        <insert tableName="node">
+            <column name="id" valueNumeric="7"/>
+            <column name="left_pos" value="12"/>
+            <column name="right_pos" value="13"/>
+            <column name="height" value="3"/>
+            <column name="parent_id" value="5"/>
+        </insert>
+        <insert tableName="node">
+            <column name="id" valueNumeric="8"/>
+            <column name="left_pos" value="7"/>
+            <column name="right_pos" value="8"/>
+            <column name="height" value="4"/>
+            <column name="parent_id" value="6"/>
+        </insert>
+        <insert tableName="node">
+            <column name="id" valueNumeric="9"/>
+            <column name="left_pos" value="9"/>
+            <column name="right_pos" value="10"/>
+            <column name="height" value="4"/>
+            <column name="parent_id" value="6"/>
+        </insert>
+
+    </changeSet>
+</databaseChangeLog>
