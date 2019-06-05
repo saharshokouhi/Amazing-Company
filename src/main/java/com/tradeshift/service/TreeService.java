@@ -4,7 +4,7 @@ import com.tradeshift.model.Node;
 
 import java.util.List;
 
-public interface GraphService {
+public interface TreeService {
 
     List<Node> getChildren(Long id);
 

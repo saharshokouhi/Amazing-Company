@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tradeshift.dao.NodeRepository;
 import com.tradeshift.dao.TreeManipulator;
 import com.tradeshift.model.Node;
-import com.tradeshift.service.GraphServiceImpl;
+import com.tradeshift.service.TreeServiceImpl;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -24,10 +24,10 @@ import static org.mockito.Mockito.doNothing;
 
 
 @RunWith(MockitoJUnitRunner.class)
-public class GraphServiceTest {
+public class TreeServiceTest {
 
     @InjectMocks
-    GraphServiceImpl graphService;
+    TreeServiceImpl graphService;
 
     @Mock
     NodeRepository nodeRepositoryMock;
@@ -42,12 +42,12 @@ public class GraphServiceTest {
 
     @Test
     public void insertNewTest() throws IOException {
-        Node rootNode = prepareForInsert("graph/normal_1.json");
+        Node rootNode = prepareForInsert("tree/normal_1.json");
         graphService.insertNew(rootNode);
     }
     @Test
     public void insertNewTestLeftPosAndRightPos() throws IOException {
-        Node rootNode = prepareForInsert("graph/normal_1.json");
+        Node rootNode = prepareForInsert("tree/normal_1.json");
         graphService.insertNew(rootNode);
         Assert.assertEquals(rootNode.getLeftPos(),1);
         Assert.assertEquals(rootNode.getRightPos(),10);
@@ -60,7 +60,7 @@ public class GraphServiceTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void insertNewTestDuplicateId() throws IOException {
-        Node rootNode = prepareForInsert("graph/dup_id.json");
+        Node rootNode = prepareForInsert("tree/dup_id.json");
         graphService.insertNew(rootNode);
     }
 

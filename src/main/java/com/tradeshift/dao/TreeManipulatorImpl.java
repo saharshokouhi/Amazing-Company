@@ -2,6 +2,8 @@ package com.tradeshift.dao;
 
 
 import com.tradeshift.model.Node;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,10 +12,16 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 @Transactional
 public class TreeManipulatorImpl implements TreeManipulator {
+    private static Logger logger = LogManager.getLogger();
 
     @Autowired
     NodeRepository nodeRepository;
 
+    /**
+     * Change parent of source node to destination node. All leftPos and rightPos and height of subtree would be updated
+     * @param source
+     * @param destination
+     */
     @Transactional
     public void changeParent(Node source, Node destination) {
         int heightDiff = destination.getHeight() - source.getHeight() + 1;
@@ -36,6 +44,7 @@ public class TreeManipulatorImpl implements TreeManipulator {
 
         nodeRepository.removeLeftSpace(width, oldRightPosition);
         nodeRepository.removeRightSpace(width, oldRightPosition);
+        logger.info("parent of source node updated to destination node, all leftPos and rightPos and height of subtree was updated");
     }
 
     @Transactional
