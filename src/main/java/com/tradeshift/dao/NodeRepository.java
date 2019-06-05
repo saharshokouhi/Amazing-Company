@@ -14,8 +14,6 @@ import java.util.List;
 public interface NodeRepository extends JpaRepository<Node, Long> {
 
 
-    @Transactional
-    @Modifying
     @Query(("SELECT node FROM  Node node where node.parent.id = :parentId"))
     List<Node> getChildren(@Param("parentId") Long parentId);
 
@@ -55,7 +53,9 @@ public interface NodeRepository extends JpaRepository<Node, Long> {
 
     @Transactional
     @Modifying
-    @Query("DELETE From Node node")
+    @Query("DELETE FROM Node node")
     void deleteTree();
 
+    @Query("SELECT node FROM Node node where node.parent.id is null")
+    Node getRoot();
 }

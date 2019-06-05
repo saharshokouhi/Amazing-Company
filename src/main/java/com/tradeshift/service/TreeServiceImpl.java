@@ -2,6 +2,7 @@ package com.tradeshift.service;
 
 import com.tradeshift.dao.NodeRepository;
 import com.tradeshift.dao.TreeManipulator;
+import com.tradeshift.exception.NodeMoveException;
 import com.tradeshift.exception.NodeNotFoundException;
 import com.tradeshift.model.Node;
 import org.apache.logging.log4j.LogManager;
@@ -54,6 +55,9 @@ public class TreeServiceImpl implements TreeService {
                 .findById(destinationId)
                 .orElseThrow(() -> new NodeNotFoundException(String.format("destination node:%d not found", destinationId)));
         Assert.notNull(source.getParent(), "root node cant't move");
+        if (source.getLeftPos() < destination.getLeftPos() && source.getRightPos() > destination.getRightPos()) {
+            throw new NodeMoveException("node can't moved to it's descendant.");
+        }
         treeManipulator.changeParent(source, destination);
         logger.info("parent of node with id {} is changed to the node with id {}", sourceId, destinationId);
     }
@@ -73,6 +77,15 @@ public class TreeServiceImpl implements TreeService {
         treeManipulator.saveTree(rootNode);
         logger.info("new tree was created!");
 
+    }
+    /**
+     * get root node
+     * @return root node
+     *
+     */
+    @Override
+    public Node getRoot() {
+        return nodeRepository.getRoot();
     }
 
     private int prepareTree(Node node, int position, int height) {

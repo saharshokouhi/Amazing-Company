@@ -11,5 +11,7 @@ public interface TreeService {
     void changeParent(Long toMove, Long destination);
 
     void insertNew(Node rootNode);
+
+    Node getRoot();
 }
 
